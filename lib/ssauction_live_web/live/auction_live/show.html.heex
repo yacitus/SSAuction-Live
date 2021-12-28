@@ -3,126 +3,126 @@
 </h1>
 
 <table class="w-full m-5 table-auto border-collapse border border-blue-400">
-    <tbody id="auction_info">
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Name:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          <%= @auction.name %>
-        </td>
-      </tr>
+  <tbody id="auction_info">
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Name:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= @auction.name %>
+      </td>
+    </tr>
 
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Active:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          <%= Auctions.active_emoji(@auction) %>
-        </td>
-      </tr>
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Active:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= Auctions.active_emoji(@auction) %>
+      </td>
+    </tr>
 
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Last Started or Paused:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          <%= if connected?(@socket) do
-                Cldr.format_time(@auction.started_or_paused_at,
-                                 locale: @locale,
-                                 timezone: @timezone)
-              else
-                Cldr.format_time(@auction.started_or_paused_at)
-              end
-          %>
-        </td>
-      </tr>
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Last Started or Paused:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= if connected?(@socket) do
+              Cldr.format_time(@auction.started_or_paused_at,
+                               locale: @locale,
+                               timezone: @timezone)
+            else
+              Cldr.format_time(@auction.started_or_paused_at)
+            end
+        %>
+      </td>
+    </tr>
 
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Years:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          <%= Auctions.dedup_years(@auction) %>
-        </td>
-      </tr>
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Years:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= Auctions.dedup_years(@auction) %>
+      </td>
+    </tr>
 
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Players Per Team:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          <%= @auction.players_per_team %>
-        </td>
-      </tr>
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Players Per Team:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= @auction.players_per_team %>
+      </td>
+    </tr>
 
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Must Roster All Players:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          <%= if @auction.must_roster_all_players do %>
-            Yes
-          <% else %>
-            No
-          <% end %>
-        </td>
-      </tr>
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Must Roster All Players:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= if @auction.must_roster_all_players do %>
+          Yes
+        <% else %>
+          No
+        <% end %>
+      </td>
+    </tr>
 
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Dollars Per Team:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          $<%= @auction.players_per_team * @auction.team_dollars_per_player %>
-        </td>
-      </tr>
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Dollars Per Team:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        $<%= @auction.players_per_team * @auction.team_dollars_per_player %>
+      </td>
+    </tr>
 
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Time Before Nominations Expire:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          <%= seconds_to_string(@auction.initial_bid_timeout_seconds) %>
-        </td>
-      </tr>
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Time Before Nominations Expire:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= seconds_to_string(@auction.initial_bid_timeout_seconds) %>
+      </td>
+    </tr>
 
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Time Before Bids Expire:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          <%= seconds_to_string(@auction.bid_timeout_seconds) %>
-        </td>
-      </tr>
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Time Before Bids Expire:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= seconds_to_string(@auction.bid_timeout_seconds) %>
+      </td>
+    </tr>
 
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Nominations Per Team:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          <%= @auction.nominations_per_team %>
-        </td>
-      </tr>
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Nominations Per Team:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= @auction.nominations_per_team %>
+      </td>
+    </tr>
 
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Time Before Auto-nomination:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          <%= seconds_to_string(@auction.seconds_before_autonomination) %>
-        </td>
-      </tr>
-    </tbody>
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Time Before Auto-nomination:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= seconds_to_string(@auction.seconds_before_autonomination) %>
+      </td>
+    </tr>
 
-      <tr>
-        <td class="pl-5 border border-blue-300">
-          Next Player<%= pluralize(@auction.nominations_per_team) %> in Auto-Nomination Queue:
-        </td>
-        <td class="pl-5 border border-blue-300">
-          <%= @auction.nominations_per_team %>
-        </td>
-      </tr>
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Next Player<%= pluralize(@auction.nominations_per_team) %> in Auto-Nomination Queue:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= @auction.nominations_per_team %>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <span><%= live_redirect "Back", to: Routes.auction_index_path(@socket, :index) %></span>
