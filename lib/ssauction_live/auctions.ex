@@ -101,4 +101,35 @@ defmodule SSAuction.Auctions do
   def change_auction(%Auction{} = auction, attrs \\ %{}) do
     Auction.changeset(auction, attrs)
   end
+
+  def active_emoji(auction) do
+    if auction.active do
+      "✅"
+    else    
+      "❌"
+    end
+  end
+
+  def dedup_years(auction) do
+    years_and_league = correct_league(auction.year_range)
+
+    case Regex.named_captures(~r/(?<year1>\d{4})-(?<year2>\d{4})-(?<league>\w\w)/, years_and_league) do
+      %{"year1" => year1, "year2" => year2, "league" => league} ->
+        if year1 == year2 do
+          year1 <> "-" <> league
+        else
+          years_and_league
+        end
+      _ ->
+       years_and_league 
+    end
+  end
+
+  defp correct_league(year_range) do
+    if String.slice(year_range, -2, 2) == "SL" do
+      String.slice(year_range, 0..-3) <> "CL"
+    else
+      year_range
+    end
+  end
 end
