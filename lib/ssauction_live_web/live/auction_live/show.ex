@@ -15,7 +15,7 @@ defmodule SSAuctionWeb.AuctionLive.Show do
       |> assign_locale()
       |> assign_timezone()
       |> assign_timezone_offset()
-  
+
     {:ok, socket}
   end
 
