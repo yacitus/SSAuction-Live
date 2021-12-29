@@ -32,14 +32,15 @@
         <td><%= all_player.name %></td>
         <td><%= all_player.position %></td>
 
+<!--
         <td>
           <span><%= live_redirect "Show", to: Routes.all_player_show_path(@socket, :show, all_player) %></span>
           <span><%= live_patch "Edit", to: Routes.all_player_index_path(@socket, :edit, all_player) %></span>
           <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: all_player.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
+        </td> -->
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= live_patch "New All player", to: Routes.all_player_index_path(@socket, :new) %></span>
+<!-- <span><%= live_patch "New All player", to: Routes.all_player_index_path(@socket, :new) %></span> -->

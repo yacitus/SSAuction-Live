@@ -130,6 +130,7 @@
     <thead>
       <tr>
         <th class="border border-blue-300">Team</th>
+        <th class="border border-blue-300">$ Spent</th>
         <th class="border border-blue-300">Unused Nominations</th>
         <th class="border border-blue-300">Time Nominations Expire</th>
         <th class="border border-blue-300">New Nominations Open At</th>
@@ -139,6 +140,9 @@
       <%= for team <- @teams do %>
         <tr class="hover:bg-sky-100" id={"team-#{team.id}"} phx-click="team" phx-value-id={"#{team.id}"}}>
           <td class="pl-2 text-left border border-blue-300"><%= team.name %></td>
+          <td class="pl-2 text-left border border-blue-300">
+            $<%= Teams.dollars_spent(team) %>
+          </td>
           <td class="text-center border border-blue-300"><%= team.unused_nominations %></td>
           <td class="text-center border border-blue-300">
             <%= live_component SSAuctionWeb.FormattedTimeComponent,

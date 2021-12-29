@@ -9,8 +9,7 @@ defmodule SSAuction.Teams.Team do
     field :unused_nominations, :integer
 
     belongs_to :auction, SSAuction.Auctions.Auction
-
-    timestamps()
+    has_many :rostered_players, SSAuction.Players.RosteredPlayer
   end
 
   @doc false

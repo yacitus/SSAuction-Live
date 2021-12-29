@@ -52,22 +52,22 @@ defmodule SSAuction.Players.AllPlayer do
     Regex.named_captures(~r/(?<start_year>\d{4})-(?<end_year>\d{4})-(?<league>[A-Z]{2})/, year_range)
   end
 
-  defp validate_unique_year_range_and_ssnum(changeset) do
-    case changeset.valid? do
-      true ->
-        year_range = get_field(changeset, :year_range)
-        ssnum = get_field(changeset, :ssnum)
-        query = from player in Ssauction.Player,
-                where: player.year_range == ^year_range and player.ssnum == ^ssnum
-        case Ssauction.Repo.all(query) do
-          [] ->
-            changeset
-          _ ->
-            add_error(changeset, :year_range, "and ssnum not unique", ssnum: ssnum)
-        end
+  # defp validate_unique_year_range_and_ssnum(changeset) do
+  #   case changeset.valid? do
+  #     true ->
+  #       year_range = get_field(changeset, :year_range)
+  #       ssnum = get_field(changeset, :ssnum)
+  #       query = from player in SSAuction.Players.Player,
+  #               where: player.year_range == ^year_range and player.ssnum == ^ssnum
+  #       case SSAuction.Repo.all(query) do
+  #         [] ->
+  #           changeset
+  #         _ ->
+  #           add_error(changeset, :year_range, "and ssnum not unique", ssnum: ssnum)
+  #       end
 
-      _ ->
-        changeset
-    end
-  end
+  #     _ ->
+  #       changeset
+  #   end
+  # end
 end

@@ -109,4 +109,12 @@ defmodule SSAuction.Teams do
       nil
     end
   end
+
+  def dollars_spent(%Team{} = team) do
+    rostered_players =
+      team
+      |> Ecto.assoc(:rostered_players)
+      |> Repo.all
+    Enum.sum(for p <- rostered_players, do: p.cost)
+  end
 end

@@ -17,6 +17,7 @@ defmodule SSAuction.Auctions.Auction do
     field :year_range, :string
 
     has_many :teams, SSAuction.Teams.Team
+    has_many :rostered_players, SSAuction.Players.RosteredPlayer
 
     timestamps()
   end
