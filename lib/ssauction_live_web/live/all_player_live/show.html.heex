@@ -1,0 +1,41 @@
+<h1>Show All player</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.all_player_show_path(@socket, :show, @all_player)}>
+    <.live_component
+      module={SSAuctionWeb.AllPlayerLive.FormComponent}
+      id={@all_player.id}
+      title={@page_title}
+      action={@live_action}
+      all_player={@all_player}
+      return_to={Routes.all_player_show_path(@socket, :show, @all_player)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Year range:</strong>
+    <%= @all_player.year_range %>
+  </li>
+
+  <li>
+    <strong>Ssnum:</strong>
+    <%= @all_player.ssnum %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @all_player.name %>
+  </li>
+
+  <li>
+    <strong>Position:</strong>
+    <%= @all_player.position %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.all_player_show_path(@socket, :edit, @all_player), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.all_player_index_path(@socket, :index) %></span>

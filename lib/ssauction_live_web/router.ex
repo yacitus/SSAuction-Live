@@ -22,6 +22,12 @@ defmodule SSAuctionWeb.Router do
     live "/auction/:id", AuctionLive.Show, :show
 
     live "/team/:id", TeamLive.Show, :show
+
+    # live "/all_players", AllPlayerLive.Index, :index
+    # live "/all_players/new", AllPlayerLive.Index, :new
+    # live "/all_players/:id/edit", AllPlayerLive.Index, :edit
+    # live "/all_players/:id", AllPlayerLive.Show, :show
+    # live "/all_players/:id/show/edit", AllPlayerLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
