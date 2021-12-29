@@ -2,6 +2,7 @@ defmodule SSAuctionWeb.TeamLive.Show do
   use SSAuctionWeb, :live_view
 
   alias SSAuction.Teams
+  alias SSAuction.Teams
 
   @impl true
   def mount(_params, _session, socket) do

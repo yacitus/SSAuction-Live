@@ -101,4 +101,12 @@ defmodule SSAuction.Teams do
   def change_team(%Team{} = team, attrs \\ %{}) do
     Team.changeset(team, attrs)
   end
+
+  def time_nominations_expire(%Team{} = team) do
+    if team.unused_nominations > 0 do
+      team.time_nominations_expire
+    else
+      nil
+    end
+  end
 end
