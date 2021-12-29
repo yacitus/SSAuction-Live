@@ -16,9 +16,13 @@ defmodule SSAuctionWeb.AuctionLive.Show do
 
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
+    auction = Auctions.get_auction!(id)
+    teams = Auctions.get_teams(auction)
     {:noreply,
      socket
-     |> assign(:auction, Auctions.get_auction!(id))}
+       |> assign(:auction, auction)
+       |> assign(:teams, teams)
+    }
   end
 
   defp append(string1, string2) do

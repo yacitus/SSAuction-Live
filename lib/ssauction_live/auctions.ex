@@ -110,7 +110,7 @@ defmodule SSAuction.Auctions do
     end
   end
 
-  def dedup_years(auction) do
+  def dedup_years(%Auction{} = auction) do
     years_and_league = correct_league(auction.year_range)
 
     case Regex.named_captures(~r/(?<year1>\d{4})-(?<year2>\d{4})-(?<league>\w\w)/, years_and_league) do
@@ -131,5 +131,9 @@ defmodule SSAuction.Auctions do
     else
       year_range
     end
+  end
+
+  def get_teams(%Auction{} = auction) do
+    Repo.preload(auction, [:teams]).teams
   end
 end
