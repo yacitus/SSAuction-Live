@@ -20,4 +20,21 @@ defmodule SSAuction.PlayersFixtures do
 
     all_player
   end
+
+  @doc """
+  Generate a player.
+  """
+  def player_fixture(attrs \\ %{}) do
+    {:ok, player} =
+      attrs
+      |> Enum.into(%{
+        name: "some name",
+        position: "some position",
+        ssnum: 42,
+        year_range: "some year_range"
+      })
+      |> SSAuction.Players.create_player()
+
+    player
+  end
 end
