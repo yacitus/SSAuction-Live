@@ -26,6 +26,11 @@ defmodule SSAuctionWeb.AuctionLive.Show do
     }
   end
 
+  @impl true
+  def handle_event("team", %{"id" => id}, socket) do
+    {:noreply, redirect(socket, to: Routes.team_show_path(socket, :show, id))}
+  end
+
   defp append(string1, string2) do
     if String.length(string1) > 0 do
       string1 <> ", " <> string2
