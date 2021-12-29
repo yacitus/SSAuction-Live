@@ -27,14 +27,10 @@
         Last Started or Paused:
       </td>
       <td class="pl-5 border border-blue-300">
-        <%= if connected?(@socket) do
-              Cldr.format_time(@auction.started_or_paused_at,
-                               locale: @locale,
-                               timezone: @timezone)
-            else
-              Cldr.format_time(@auction.started_or_paused_at)
-            end
-        %>
+        <%= live_component SSAuctionWeb.FormattedTimeComponent,
+                           utc_datetime: @auction.started_or_paused_at,
+                           locale: @locale,
+                           timezone: @timezone %>
       </td>
     </tr>
 
