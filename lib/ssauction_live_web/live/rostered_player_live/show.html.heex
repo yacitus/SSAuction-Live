@@ -1,0 +1,26 @@
+<h1>Show Rostered player</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.rostered_player_show_path(@socket, :show, @rostered_player)}>
+    <.live_component
+      module={SSAuctionWeb.RosteredPlayerLive.FormComponent}
+      id={@rostered_player.id}
+      title={@page_title}
+      action={@live_action}
+      rostered_player={@rostered_player}
+      return_to={Routes.rostered_player_show_path(@socket, :show, @rostered_player)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Cost:</strong>
+    <%= @rostered_player.cost %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.rostered_player_show_path(@socket, :edit, @rostered_player), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.rostered_player_index_path(@socket, :index) %></span>

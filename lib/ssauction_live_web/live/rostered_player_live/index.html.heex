@@ -1,0 +1,39 @@
+<h1>Listing Rostered players</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.rostered_player_index_path(@socket, :index)}>
+    <.live_component
+      module={SSAuctionWeb.RosteredPlayerLive.FormComponent}
+      id={@rostered_player.id || :new}
+      title={@page_title}
+      action={@live_action}
+      rostered_player={@rostered_player}
+      return_to={Routes.rostered_player_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cost</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="rostered_players">
+    <%= for rostered_player <- @rostered_players do %>
+      <tr id={"rostered_player-#{rostered_player.id}"}>
+        <td><%= rostered_player.cost %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.rostered_player_show_path(@socket, :show, rostered_player) %></span>
+          <span><%= live_patch "Edit", to: Routes.rostered_player_index_path(@socket, :edit, rostered_player) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: rostered_player.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Rostered player", to: Routes.rostered_player_index_path(@socket, :new) %></span>

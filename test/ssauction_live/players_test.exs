@@ -122,4 +122,58 @@ defmodule SSAuction.PlayersTest do
       assert %Ecto.Changeset{} = Players.change_player(player)
     end
   end
+
+  describe "rostered_players" do
+    alias SSAuction.Players.RosteredPlayer
+
+    import SSAuction.PlayersFixtures
+
+    @invalid_attrs %{cost: nil}
+
+    test "list_rostered_players/0 returns all rostered_players" do
+      rostered_player = rostered_player_fixture()
+      assert Players.list_rostered_players() == [rostered_player]
+    end
+
+    test "get_rostered_player!/1 returns the rostered_player with given id" do
+      rostered_player = rostered_player_fixture()
+      assert Players.get_rostered_player!(rostered_player.id) == rostered_player
+    end
+
+    test "create_rostered_player/1 with valid data creates a rostered_player" do
+      valid_attrs = %{cost: 42}
+
+      assert {:ok, %RosteredPlayer{} = rostered_player} = Players.create_rostered_player(valid_attrs)
+      assert rostered_player.cost == 42
+    end
+
+    test "create_rostered_player/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Players.create_rostered_player(@invalid_attrs)
+    end
+
+    test "update_rostered_player/2 with valid data updates the rostered_player" do
+      rostered_player = rostered_player_fixture()
+      update_attrs = %{cost: 43}
+
+      assert {:ok, %RosteredPlayer{} = rostered_player} = Players.update_rostered_player(rostered_player, update_attrs)
+      assert rostered_player.cost == 43
+    end
+
+    test "update_rostered_player/2 with invalid data returns error changeset" do
+      rostered_player = rostered_player_fixture()
+      assert {:error, %Ecto.Changeset{}} = Players.update_rostered_player(rostered_player, @invalid_attrs)
+      assert rostered_player == Players.get_rostered_player!(rostered_player.id)
+    end
+
+    test "delete_rostered_player/1 deletes the rostered_player" do
+      rostered_player = rostered_player_fixture()
+      assert {:ok, %RosteredPlayer{}} = Players.delete_rostered_player(rostered_player)
+      assert_raise Ecto.NoResultsError, fn -> Players.get_rostered_player!(rostered_player.id) end
+    end
+
+    test "change_rostered_player/1 returns a rostered_player changeset" do
+      rostered_player = rostered_player_fixture()
+      assert %Ecto.Changeset{} = Players.change_rostered_player(rostered_player)
+    end
+  end
 end

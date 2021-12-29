@@ -197,4 +197,100 @@ defmodule SSAuction.Players do
   def change_player(%Player{} = player, attrs \\ %{}) do
     Player.changeset(player, attrs)
   end
+
+  alias SSAuction.Players.RosteredPlayer
+
+  @doc """
+  Returns the list of rostered_players.
+
+  ## Examples
+
+      iex> list_rostered_players()
+      [%RosteredPlayer{}, ...]
+
+  """
+  def list_rostered_players do
+    Repo.all(RosteredPlayer)
+  end
+
+  @doc """
+  Gets a single rostered_player.
+
+  Raises `Ecto.NoResultsError` if the Rostered player does not exist.
+
+  ## Examples
+
+      iex> get_rostered_player!(123)
+      %RosteredPlayer{}
+
+      iex> get_rostered_player!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_rostered_player!(id), do: Repo.get!(RosteredPlayer, id)
+
+  @doc """
+  Creates a rostered_player.
+
+  ## Examples
+
+      iex> create_rostered_player(%{field: value})
+      {:ok, %RosteredPlayer{}}
+
+      iex> create_rostered_player(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_rostered_player(attrs \\ %{}) do
+    %RosteredPlayer{}
+    |> RosteredPlayer.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a rostered_player.
+
+  ## Examples
+
+      iex> update_rostered_player(rostered_player, %{field: new_value})
+      {:ok, %RosteredPlayer{}}
+
+      iex> update_rostered_player(rostered_player, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_rostered_player(%RosteredPlayer{} = rostered_player, attrs) do
+    rostered_player
+    |> RosteredPlayer.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a rostered_player.
+
+  ## Examples
+
+      iex> delete_rostered_player(rostered_player)
+      {:ok, %RosteredPlayer{}}
+
+      iex> delete_rostered_player(rostered_player)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_rostered_player(%RosteredPlayer{} = rostered_player) do
+    Repo.delete(rostered_player)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking rostered_player changes.
+
+  ## Examples
+
+      iex> change_rostered_player(rostered_player)
+      %Ecto.Changeset{data: %RosteredPlayer{}}
+
+  """
+  def change_rostered_player(%RosteredPlayer{} = rostered_player, attrs \\ %{}) do
+    RosteredPlayer.changeset(rostered_player, attrs)
+  end
 end

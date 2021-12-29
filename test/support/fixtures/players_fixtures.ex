@@ -37,4 +37,18 @@ defmodule SSAuction.PlayersFixtures do
 
     player
   end
+
+  @doc """
+  Generate a rostered_player.
+  """
+  def rostered_player_fixture(attrs \\ %{}) do
+    {:ok, rostered_player} =
+      attrs
+      |> Enum.into(%{
+        cost: 42
+      })
+      |> SSAuction.Players.create_rostered_player()
+
+    rostered_player
+  end
 end
