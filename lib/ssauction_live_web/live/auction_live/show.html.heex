@@ -97,7 +97,7 @@
         Nominations Per Team:
       </td>
       <td class="pl-5 border border-blue-300">
-        <%= @auction.nominations_per_team %>
+        <%= @auction.nominations_per_team %> - <a class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" href={"/auction/#{@auction.id}/autonominationqueue"}>Auto-Nomination Queue</a>
       </td>
     </tr>
 
@@ -107,15 +107,6 @@
       </td>
       <td class="pl-5 border border-blue-300">
         <%= seconds_to_string(@auction.seconds_before_autonomination) %>
-      </td>
-    </tr>
-
-    <tr>
-      <td class="pl-5 border border-blue-300">
-        Next Player<%= pluralize(@auction.nominations_per_team) %> in Auto-Nomination Queue:
-      </td>
-      <td class="pl-5 border border-blue-300">
-        <%= @auction.nominations_per_team %>
       </td>
     </tr>
   </tbody>

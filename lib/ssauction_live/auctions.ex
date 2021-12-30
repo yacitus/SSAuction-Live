@@ -7,6 +7,7 @@ defmodule SSAuction.Auctions do
   alias SSAuction.Repo
 
   alias SSAuction.Auctions.Auction
+  alias SSAuction.Players.OrderedPlayer
 
   @doc """
   Returns the list of auctions.
@@ -139,5 +140,14 @@ defmodule SSAuction.Auctions do
 
   def dollars_per_team(%Auction{} = auction) do
     auction.players_per_team * auction.team_dollars_per_player
+  end
+
+  def players_in_autonomination_queue(%Auction{} = auction) do
+    query = from op in OrderedPlayer,
+              where: op.auction_id == ^auction.id,
+              join: p in assoc(op, :player),
+              preload: [player: p],
+              order_by: :rank
+    Repo.all(query)
   end
 end

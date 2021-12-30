@@ -21,6 +21,7 @@ defmodule SSAuctionWeb.TeamLive.Show do
     {:noreply,
      socket
        |> assign(:team, team)
-       |> assign(:rostered_players, Teams.get_rostered_players(team))}
+       |> assign(:rostered_players, Teams.get_rostered_players(team))
+    }
   end
 end
