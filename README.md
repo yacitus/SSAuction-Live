@@ -1,5 +1,15 @@
 # SSAuction-Live
 
+## TODO:
+
+* HEADER!
+* Teams Table on auction page: hide Time Nominations Expire and New Nominations Open At columns if there are no unused nominations
+* make Rostered Players table on team page sortable
+* Auto-Nomination Queue page: show Nominations Per Team
+* Auto-Nomination Queue page: highlight top N players where N = Nominations Per Team
+
+## Phoenix
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
