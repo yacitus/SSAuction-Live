@@ -1,0 +1,39 @@
+<h1>Listing Ordered players</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.ordered_player_index_path(@socket, :index)}>
+    <.live_component
+      module={SSAuctionWeb.OrderedPlayerLive.FormComponent}
+      id={@ordered_player.id || :new}
+      title={@page_title}
+      action={@live_action}
+      ordered_player={@ordered_player}
+      return_to={Routes.ordered_player_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="ordered_players">
+    <%= for ordered_player <- @ordered_players do %>
+      <tr id={"ordered_player-#{ordered_player.id}"}>
+        <td><%= ordered_player.rank %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.ordered_player_show_path(@socket, :show, ordered_player) %></span>
+          <span><%= live_patch "Edit", to: Routes.ordered_player_index_path(@socket, :edit, ordered_player) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: ordered_player.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Ordered player", to: Routes.ordered_player_index_path(@socket, :new) %></span>

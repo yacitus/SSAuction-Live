@@ -10,6 +10,7 @@ defmodule SSAuction.Teams.Team do
 
     belongs_to :auction, SSAuction.Auctions.Auction
     has_many :rostered_players, SSAuction.Players.RosteredPlayer
+    has_many :ordered_players, SSAuction.Players.OrderedPlayer
   end
 
   @doc false

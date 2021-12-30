@@ -176,4 +176,58 @@ defmodule SSAuction.PlayersTest do
       assert %Ecto.Changeset{} = Players.change_rostered_player(rostered_player)
     end
   end
+
+  describe "ordered_players" do
+    alias SSAuction.Players.OrderedPlayer
+
+    import SSAuction.PlayersFixtures
+
+    @invalid_attrs %{rank: nil}
+
+    test "list_ordered_players/0 returns all ordered_players" do
+      ordered_player = ordered_player_fixture()
+      assert Players.list_ordered_players() == [ordered_player]
+    end
+
+    test "get_ordered_player!/1 returns the ordered_player with given id" do
+      ordered_player = ordered_player_fixture()
+      assert Players.get_ordered_player!(ordered_player.id) == ordered_player
+    end
+
+    test "create_ordered_player/1 with valid data creates a ordered_player" do
+      valid_attrs = %{rank: 42}
+
+      assert {:ok, %OrderedPlayer{} = ordered_player} = Players.create_ordered_player(valid_attrs)
+      assert ordered_player.rank == 42
+    end
+
+    test "create_ordered_player/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Players.create_ordered_player(@invalid_attrs)
+    end
+
+    test "update_ordered_player/2 with valid data updates the ordered_player" do
+      ordered_player = ordered_player_fixture()
+      update_attrs = %{rank: 43}
+
+      assert {:ok, %OrderedPlayer{} = ordered_player} = Players.update_ordered_player(ordered_player, update_attrs)
+      assert ordered_player.rank == 43
+    end
+
+    test "update_ordered_player/2 with invalid data returns error changeset" do
+      ordered_player = ordered_player_fixture()
+      assert {:error, %Ecto.Changeset{}} = Players.update_ordered_player(ordered_player, @invalid_attrs)
+      assert ordered_player == Players.get_ordered_player!(ordered_player.id)
+    end
+
+    test "delete_ordered_player/1 deletes the ordered_player" do
+      ordered_player = ordered_player_fixture()
+      assert {:ok, %OrderedPlayer{}} = Players.delete_ordered_player(ordered_player)
+      assert_raise Ecto.NoResultsError, fn -> Players.get_ordered_player!(ordered_player.id) end
+    end
+
+    test "change_ordered_player/1 returns a ordered_player changeset" do
+      ordered_player = ordered_player_fixture()
+      assert %Ecto.Changeset{} = Players.change_ordered_player(ordered_player)
+    end
+  end
 end

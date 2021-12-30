@@ -51,4 +51,18 @@ defmodule SSAuction.PlayersFixtures do
 
     rostered_player
   end
+
+  @doc """
+  Generate a ordered_player.
+  """
+  def ordered_player_fixture(attrs \\ %{}) do
+    {:ok, ordered_player} =
+      attrs
+      |> Enum.into(%{
+        rank: 42
+      })
+      |> SSAuction.Players.create_ordered_player()
+
+    ordered_player
+  end
 end

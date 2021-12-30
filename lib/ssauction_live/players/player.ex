@@ -9,6 +9,7 @@ defmodule SSAuction.Players.Player do
     field :position, :string
 
     belongs_to :rostered_player, SSAuction.Players.RosteredPlayer
+    has_many :ordered_players, SSAuction.Players.OrderedPlayer
   end
 
   def changeset(player, params \\ %{}) do

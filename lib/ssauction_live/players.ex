@@ -293,4 +293,100 @@ defmodule SSAuction.Players do
   def change_rostered_player(%RosteredPlayer{} = rostered_player, attrs \\ %{}) do
     RosteredPlayer.changeset(rostered_player, attrs)
   end
+
+  alias SSAuction.Players.OrderedPlayer
+
+  @doc """
+  Returns the list of ordered_players.
+
+  ## Examples
+
+      iex> list_ordered_players()
+      [%OrderedPlayer{}, ...]
+
+  """
+  def list_ordered_players do
+    Repo.all(OrderedPlayer)
+  end
+
+  @doc """
+  Gets a single ordered_player.
+
+  Raises `Ecto.NoResultsError` if the Ordered player does not exist.
+
+  ## Examples
+
+      iex> get_ordered_player!(123)
+      %OrderedPlayer{}
+
+      iex> get_ordered_player!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_ordered_player!(id), do: Repo.get!(OrderedPlayer, id)
+
+  @doc """
+  Creates a ordered_player.
+
+  ## Examples
+
+      iex> create_ordered_player(%{field: value})
+      {:ok, %OrderedPlayer{}}
+
+      iex> create_ordered_player(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_ordered_player(attrs \\ %{}) do
+    %OrderedPlayer{}
+    |> OrderedPlayer.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a ordered_player.
+
+  ## Examples
+
+      iex> update_ordered_player(ordered_player, %{field: new_value})
+      {:ok, %OrderedPlayer{}}
+
+      iex> update_ordered_player(ordered_player, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_ordered_player(%OrderedPlayer{} = ordered_player, attrs) do
+    ordered_player
+    |> OrderedPlayer.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a ordered_player.
+
+  ## Examples
+
+      iex> delete_ordered_player(ordered_player)
+      {:ok, %OrderedPlayer{}}
+
+      iex> delete_ordered_player(ordered_player)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_ordered_player(%OrderedPlayer{} = ordered_player) do
+    Repo.delete(ordered_player)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking ordered_player changes.
+
+  ## Examples
+
+      iex> change_ordered_player(ordered_player)
+      %Ecto.Changeset{data: %OrderedPlayer{}}
+
+  """
+  def change_ordered_player(%OrderedPlayer{} = ordered_player, attrs \\ %{}) do
+    OrderedPlayer.changeset(ordered_player, attrs)
+  end
 end
