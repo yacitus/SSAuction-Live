@@ -70,7 +70,7 @@
         Dollars Per Team:
       </td>
       <td class="pl-5 border border-blue-300">
-        $<%= @auction.players_per_team * @auction.team_dollars_per_player %>
+        $<%= Auctions.dollars_per_team(@auction) %>
       </td>
     </tr>
 

@@ -7,6 +7,8 @@ defmodule SSAuction.Teams do
   alias SSAuction.Repo
 
   alias SSAuction.Teams.Team
+  alias SSAuction.Auctions
+  alias SSAuction.Auctions.Auction
 
   @doc """
   Returns the list of teams.
@@ -116,5 +118,34 @@ defmodule SSAuction.Teams do
       |> Ecto.assoc(:rostered_players)
       |> Repo.all
     Enum.sum(for p <- rostered_players, do: p.cost)
+  end
+
+  def dollars_bid(%Team{} = _team) do
+    0
+  end
+
+  def number_of_bids(%Team{} = _team) do
+    0
+  end
+
+  def number_of_rostered_players(%Team{} = _team) do
+    0
+  end
+
+  def dollars_remaining_for_bids(%Team{} = team) do
+    auction = Auctions.get_auction!(team.auction_id)
+    dollars_remaining_for_bids(auction, team)
+  end
+
+  def dollars_remaining_for_bids(%Auction{} = auction, %Team{} = team) do
+    dollars_left = Auctions.dollars_per_team(auction) \
+                    - (dollars_spent(team) + dollars_bid(team))
+    if auction.must_roster_all_players do
+      dollars_left - (auction.players_per_team \
+                      - number_of_rostered_players(team) \
+                      - number_of_bids(team))
+    else
+      dollars_left
+    end
   end
 end

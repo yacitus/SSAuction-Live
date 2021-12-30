@@ -136,4 +136,8 @@ defmodule SSAuction.Auctions do
   def get_teams(%Auction{} = auction) do
     Repo.preload(auction, [:teams]).teams
   end
+
+  def dollars_per_team(%Auction{} = auction) do
+    auction.players_per_team * auction.team_dollars_per_player
+  end
 end
