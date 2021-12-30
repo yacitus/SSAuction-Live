@@ -63,5 +63,14 @@
                            timezone: @timezone %>
       </td>
     </tr>
+
+    <tr>
+      <td class="pl-5 border border-blue-300">
+        Players rostered:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <%= Teams.number_of_rostered_players(@team) %>
+      </td>
+    </tr>
   </tbody>
 </table>

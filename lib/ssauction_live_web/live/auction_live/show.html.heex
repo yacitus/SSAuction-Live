@@ -134,6 +134,7 @@
         <th class="border border-blue-300">Unused Nominations</th>
         <th class="border border-blue-300">Time Nominations Expire</th>
         <th class="border border-blue-300">New Nominations Open At</th>
+        <th class="border border-blue-300">Players Rostered</th>
       </tr>
     </thead>
     <tbody id="teams">
@@ -155,6 +156,9 @@
                                utc_datetime: team.new_nominations_open_at,
                                locale: @locale,
                                timezone: @timezone %>
+          </td>
+          <td class="pr-8 text-center border border-blue-300">
+            <%= Teams.number_of_rostered_players(team) %>
           </td>
         </tr>
       <% end %>
