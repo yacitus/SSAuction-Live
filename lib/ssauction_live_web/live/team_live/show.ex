@@ -17,8 +17,10 @@ defmodule SSAuctionWeb.TeamLive.Show do
 
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
+    team = Teams.get_team!(id)
     {:noreply,
      socket
-     |> assign(:team, Teams.get_team!(id))}
+       |> assign(:team, team)
+       |> assign(:rostered_players, Teams.get_rostered_players(team))}
   end
 end

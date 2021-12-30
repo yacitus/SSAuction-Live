@@ -5,9 +5,9 @@ defmodule SSAuction.Players.RosteredPlayer do
   schema "rostered_players" do
     field :cost, :integer
 
-    has_one :player, Ssauction.Player
-    belongs_to :team, Ssauction.Team
-    belongs_to :auction, Ssauction.Auction
+    has_one :player, SSAuction.Players.Player
+    belongs_to :team, SSAuction.Team
+    belongs_to :auction, SSAuction.Auction
   end
 
   def changeset(rostered_player, params \\ %{}) do

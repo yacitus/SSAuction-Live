@@ -128,12 +128,6 @@ defmodule SSAuction.Teams do
     0
   end
 
-  def number_of_rostered_players(%Team{} = team) do
-    team
-      |> Ecto.assoc(:rostered_players)
-      |> Repo.aggregate(:count, :id)
-  end
-
   def dollars_remaining_for_bids(%Team{} = team) do
     auction = Auctions.get_auction!(team.auction_id)
     dollars_remaining_for_bids(auction, team)
@@ -149,5 +143,18 @@ defmodule SSAuction.Teams do
     else
       dollars_left
     end
+  end
+
+  def number_of_rostered_players(%Team{} = team) do
+    team
+      |> Ecto.assoc(:rostered_players)
+      |> Repo.aggregate(:count, :id)
+  end
+
+  def get_rostered_players(%Team{} = team) do
+    team
+      |> Ecto.assoc(:rostered_players)
+      |> Repo.all
+      |> Repo.preload([:player])
   end
 end
