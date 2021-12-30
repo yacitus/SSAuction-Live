@@ -6,8 +6,8 @@ defmodule SSAuction.Players.RosteredPlayer do
     field :cost, :integer
 
     has_one :player, SSAuction.Players.Player
-    belongs_to :team, SSAuction.Team
-    belongs_to :auction, SSAuction.Auction
+    belongs_to :team, SSAuction.Teams.Team
+    belongs_to :auction, SSAuction.Auctions.Auction
   end
 
   def changeset(rostered_player, params \\ %{}) do

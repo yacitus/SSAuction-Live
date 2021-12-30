@@ -4,7 +4,7 @@
 
 * HEADER!
 * Teams Table on auction page: hide Time Nominations Expire and New Nominations Open At columns if there are no unused nominations
-* make Rostered Players table on team page sortable
+* make Rostered Players table on team & auction pages sortable, add column for when rostered
 * Auto-Nomination Queue page: show Nominations Per Team
 * Auto-Nomination Queue page: highlight top N players where N = Nominations Per Team
 

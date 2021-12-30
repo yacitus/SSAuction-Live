@@ -7,7 +7,9 @@ defmodule SSAuction.Auctions do
   alias SSAuction.Repo
 
   alias SSAuction.Auctions.Auction
+  alias SSAuction.Teams.Team
   alias SSAuction.Players.OrderedPlayer
+  alias SSAuction.Players.RosteredPlayer
 
   @doc """
   Returns the list of auctions.
@@ -132,6 +134,13 @@ defmodule SSAuction.Auctions do
     else
       year_range
     end
+  end
+
+  def get_rostered_players(%Auction{} = auction) do
+    auction
+      |> Ecto.assoc(:rostered_players)
+      |> Repo.all
+      |> Repo.preload([:player, :team])
   end
 
   def get_teams(%Auction{} = auction) do

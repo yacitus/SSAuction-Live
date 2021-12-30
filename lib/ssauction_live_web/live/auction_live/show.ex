@@ -18,11 +18,11 @@ defmodule SSAuctionWeb.AuctionLive.Show do
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
     auction = Auctions.get_auction!(id)
-    teams = Auctions.get_teams(auction)
     {:noreply,
      socket
        |> assign(:auction, auction)
-       |> assign(:teams, teams)
+       |> assign(:teams, Auctions.get_teams(auction))
+       |> assign(:rostered_players, Auctions.get_rostered_players(auction))
     }
   end
 

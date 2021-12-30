@@ -6,8 +6,8 @@ defmodule SSAuction.Players.OrderedPlayer do
     field :rank, :integer
 
     belongs_to :player, SSAuction.Players.Player
-    belongs_to :team, SSAuction.Team
-    belongs_to :auction, SSAuction.Auction
+    belongs_to :team, SSAuction.Teams.Team
+    belongs_to :auction, SSAuction.Auctions.Auction
   end
 
   @doc false
