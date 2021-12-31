@@ -4,6 +4,7 @@
 
 * rename SSAuction.Bids.bid_logs to SSAuction.Bids.list_bid_logs
 * HEADER!
+* don't link to bids page from auction and team pages if there are zero open bids
 * figure out how to dedupe team_live/bids.html.heex and auction_live/bids.html.heex
 * Teams Table on auction page: hide Time Nominations Expire and New Nominations Open At columns if there are no unused nominations
 * move Rostered Players table on team & auction pages to separate pages
