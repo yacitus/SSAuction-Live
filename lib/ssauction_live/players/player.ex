@@ -10,6 +10,7 @@ defmodule SSAuction.Players.Player do
 
     belongs_to :rostered_player, SSAuction.Players.RosteredPlayer
     has_many :ordered_players, SSAuction.Players.OrderedPlayer
+    has_many :bid_logs, SSAuction.Bids.BidLog
   end
 
   def changeset(player, params \\ %{}) do

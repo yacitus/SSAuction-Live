@@ -2,6 +2,7 @@ defmodule SSAuctionWeb.PlayerLive.Show do
   use SSAuctionWeb, :live_view
 
   alias SSAuction.Players
+  alias SSAuction.Bids
   alias SSAuction.Repo
 
   @impl true
@@ -25,6 +26,7 @@ defmodule SSAuctionWeb.PlayerLive.Show do
      socket
        |> assign(:player, player)
        |> assign(:rostered_player, rostered_player)
+       |> assign(:bid_logs, Bids.bid_logs(player))
     }
   end
 end

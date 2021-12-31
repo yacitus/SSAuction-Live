@@ -19,6 +19,7 @@ defmodule SSAuction.Auctions.Auction do
     has_many :teams, SSAuction.Teams.Team
     has_many :rostered_players, SSAuction.Players.RosteredPlayer
     has_many :ordered_players, SSAuction.Players.OrderedPlayer
+    has_many :bid_logs, SSAuction.Bids.BidLog
 
     timestamps()
   end

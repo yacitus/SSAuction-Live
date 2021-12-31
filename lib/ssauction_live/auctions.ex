@@ -7,9 +7,7 @@ defmodule SSAuction.Auctions do
   alias SSAuction.Repo
 
   alias SSAuction.Auctions.Auction
-  alias SSAuction.Teams.Team
   alias SSAuction.Players.OrderedPlayer
-  alias SSAuction.Players.RosteredPlayer
 
   @doc """
   Returns the list of auctions.

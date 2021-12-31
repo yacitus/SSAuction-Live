@@ -50,3 +50,37 @@
     </tr>
   </tbody>
 </table>
+
+<h1 class="w-full m-5 border-4 border-blue-600 text-blue-700 text-5xl font-bold text-center">
+  Bids
+</h1>
+
+<div class="w-full m-5">
+  <table class="w-full table-auto border-collapse border border-blue-400">
+    <thead>
+      <tr>
+        <th class="border border-blue-300">When</th>
+        <th class="border border-blue-300">Team</th>
+        <th class="border border-blue-300">Amount</th>
+        <th class="border border-blue-300">Bid Type</th>
+      </tr>
+    </thead>
+    <tbody id="teams">
+      <%= for logged_bid <- @bid_logs do %>
+        <tr>
+          <td class="pl-5 text-left border border-blue-300">
+            <%= live_component SSAuctionWeb.FormattedTimeComponent,
+                               utc_datetime: logged_bid.datetime,
+                               locale: @locale,
+                               timezone: @timezone %>
+          </td>
+          <td class="pl-5 text-left border border-blue-300"><%= logged_bid.team.name %></td>
+          <td class="pl-5 text-left border border-blue-300">$<%= logged_bid.amount %></td>
+          <td class="pl-5 text-left border border-blue-300">
+            <%= Bids.bid_log_type_string(logged_bid.type) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

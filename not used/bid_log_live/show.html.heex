@@ -1,0 +1,36 @@
+<h1>Show Bid log</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.bid_log_show_path(@socket, :show, @bid_log)}>
+    <.live_component
+      module={SSAuctionWeb.BidLogLive.FormComponent}
+      id={@bid_log.id}
+      title={@page_title}
+      action={@live_action}
+      bid_log={@bid_log}
+      return_to={Routes.bid_log_show_path(@socket, :show, @bid_log)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Amount:</strong>
+    <%= @bid_log.amount %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @bid_log.type %>
+  </li>
+
+  <li>
+    <strong>Datetime:</strong>
+    <%= @bid_log.datetime %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.bid_log_show_path(@socket, :edit, @bid_log), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.bid_log_index_path(@socket, :index) %></span>
