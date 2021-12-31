@@ -187,6 +187,12 @@ defmodule SSAuction.Auctions do
       |> Repo.preload([:player, :team])
   end
 
+  def number_of_rostered_players(%Auction{} = auction) do
+    auction
+      |> Ecto.assoc(:rostered_players)
+      |> Repo.aggregate(:count, :id)
+  end
+
   def get_teams(%Auction{} = auction) do
     Repo.preload(auction, [:teams]).teams
   end
