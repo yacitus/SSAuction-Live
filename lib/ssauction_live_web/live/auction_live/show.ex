@@ -3,6 +3,8 @@ defmodule SSAuctionWeb.AuctionLive.Show do
 
   alias SSAuction.Auctions
   alias SSAuction.Teams
+  alias SSAuction.Players
+  alias SSAuction.Repo
 
   @impl true
   def mount(_params, _session, socket) do
@@ -29,6 +31,12 @@ defmodule SSAuctionWeb.AuctionLive.Show do
   @impl true
   def handle_event("team", %{"id" => id}, socket) do
     {:noreply, redirect(socket, to: Routes.team_show_path(socket, :show, id))}
+  end
+
+  @impl true
+  def handle_event("rostered_players", %{"id" => id}, socket) do
+    rostered_player = Players.get_rostered_player!(id) |> Repo.preload([:player])
+    {:noreply, redirect(socket, to: Routes.player_show_path(socket, :show, rostered_player.player.id))}
   end
 
   defp append(string1, string2) do

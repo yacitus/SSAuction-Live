@@ -24,6 +24,8 @@ defmodule SSAuctionWeb.Router do
 
     live "/team/:id", TeamLive.Show, :show
 
+    live "/player/:id", PlayerLive.Show, :show
+
     # live "/all_players", AllPlayerLive.Index, :index
     # live "/all_players/new", AllPlayerLive.Index, :new
     # live "/all_players/:id/edit", AllPlayerLive.Index, :edit

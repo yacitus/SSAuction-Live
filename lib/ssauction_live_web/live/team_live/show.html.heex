@@ -91,8 +91,7 @@
     </thead>
     <tbody id="teams">
       <%= for rostered_player <- @rostered_players do %>
-        <!-- <tr class="hover:bg-sky-100" id={"rostered_players-#{rostered_players.id}"} phx-click="rostered_players" phx-value-id={"#{rostered_players.id}"}}> -->
-        <tr>
+        <tr class="hover:bg-sky-100" id={"rostered_players-#{rostered_player.id}"} phx-click="rostered_players" phx-value-id={"#{rostered_player.id}"}}>
           <td class="pl-5 text-left border border-blue-300">$<%= rostered_player.cost %></td>
           <td class="pl-5 text-left border border-blue-300"><%= rostered_player.player.name %></td>
           <td class="pl-5 text-left border border-blue-300"><%= rostered_player.player.position %></td>
