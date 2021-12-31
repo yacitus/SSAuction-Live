@@ -2,7 +2,6 @@
 
 ## TODO:
 
-* rename SSAuction.Bids.bid_logs to SSAuction.Bids.list_bid_logs
 * HEADER!
 * don't link to bids page from auction and team pages if there are zero open bids
 * figure out how to dedupe team_live/bids.html.heex and auction_live/bids.html.heex

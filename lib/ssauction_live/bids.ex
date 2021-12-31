@@ -105,7 +105,7 @@ defmodule SSAuction.Bids do
     BidLog.changeset(bid_log, attrs)
   end
 
-  def bid_logs(%Player{} = player) do
+  def list_bid_logs(%Player{} = player) do
     Repo.all(from bl in BidLog,
               where: bl.player_id == ^player.id,
               join: t in assoc(bl, :team),

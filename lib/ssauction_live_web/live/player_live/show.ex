@@ -26,7 +26,7 @@ defmodule SSAuctionWeb.PlayerLive.Show do
      socket
        |> assign(:player, player)
        |> assign(:rostered_player, rostered_player)
-       |> assign(:bid_logs, Bids.bid_logs(player))
+       |> assign(:bid_logs, Bids.list_bid_logs(player))
     }
   end
 end
