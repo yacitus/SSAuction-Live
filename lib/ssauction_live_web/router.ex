@@ -21,8 +21,10 @@ defmodule SSAuctionWeb.Router do
     live "/auctions", AuctionLive.Index, :index
     live "/auction/:id", AuctionLive.Show, :show
     live "/auction/:id/autonominationqueue", AuctionLive.AutoNominationQueue
+    live "/auction/:id/bids", AuctionLive.Bids
 
     live "/team/:id", TeamLive.Show, :show
+    live "/team/:id/bids", TeamLive.Bids
 
     live "/player/:id", PlayerLive.Show, :show
 
@@ -51,6 +53,11 @@ defmodule SSAuctionWeb.Router do
     # live "/bid_logs/:id/edit", BidLogLive.Index, :edit
     # live "/bid_logs/:id", BidLogLive.Show, :show
     # live "/bid_logs/:id/show/edit", BidLogLive.Show, :edit
+    # live "/bids", BidLive.Index, :index
+    # live "/bids/new", BidLive.Index, :new
+    # live "/bids/:id/edit", BidLive.Index, :edit
+    # live "/bids/:id", BidLive.Show, :show
+    # live "/bids/:id/show/edit", BidLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

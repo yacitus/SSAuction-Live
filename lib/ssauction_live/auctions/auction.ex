@@ -16,7 +16,9 @@ defmodule SSAuction.Auctions.Auction do
     field :team_dollars_per_player, :integer
     field :year_range, :string
 
+    has_many :players, SSAuction.Players.Player
     has_many :teams, SSAuction.Teams.Team
+    has_many :bids, SSAuction.Bids.Bid
     has_many :rostered_players, SSAuction.Players.RosteredPlayer
     has_many :ordered_players, SSAuction.Players.OrderedPlayer
     has_many :bid_logs, SSAuction.Bids.BidLog

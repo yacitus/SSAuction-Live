@@ -8,6 +8,8 @@ defmodule SSAuction.Players.Player do
     field :name, :string
     field :position, :string
 
+    belongs_to :auction, SSAuction.Auctions.Auction
+    belongs_to :bid, SSAuction.Bids.Bid
     belongs_to :rostered_player, SSAuction.Players.RosteredPlayer
     has_many :ordered_players, SSAuction.Players.OrderedPlayer
     has_many :bid_logs, SSAuction.Bids.BidLog

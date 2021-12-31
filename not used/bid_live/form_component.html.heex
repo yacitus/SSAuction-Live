@@ -1,0 +1,36 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="bid-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :bid_amount %>
+    <%= number_input f, :bid_amount %>
+    <%= error_tag f, :bid_amount %>
+  
+    <%= label f, :hidden_high_bid %>
+    <%= number_input f, :hidden_high_bid %>
+    <%= error_tag f, :hidden_high_bid %>
+  
+    <%= label f, :expires_at %>
+    <%= datetime_select f, :expires_at %>
+    <%= error_tag f, :expires_at %>
+  
+    <%= label f, :closed %>
+    <%= checkbox f, :closed %>
+    <%= error_tag f, :closed %>
+  
+    <%= label f, :nominated_by %>
+    <%= number_input f, :nominated_by %>
+    <%= error_tag f, :nominated_by %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

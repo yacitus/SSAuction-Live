@@ -19,4 +19,22 @@ defmodule SSAuction.BidsFixtures do
 
     bid_log
   end
+
+  @doc """
+  Generate a bid.
+  """
+  def bid_fixture(attrs \\ %{}) do
+    {:ok, bid} =
+      attrs
+      |> Enum.into(%{
+        bid_amount: 42,
+        closed: true,
+        expires_at: ~U[2021-12-30 15:27:00Z],
+        hidden_high_bid: 42,
+        nominated_by: 42
+      })
+      |> SSAuction.Bids.create_bid()
+
+    bid
+  end
 end

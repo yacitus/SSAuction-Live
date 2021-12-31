@@ -3,6 +3,7 @@ defmodule SSAuctionWeb.TeamLive.Show do
 
   alias SSAuction.Teams
   alias SSAuction.Players
+  alias SSAuction.Bids
   alias SSAuction.Repo
 
   @impl true

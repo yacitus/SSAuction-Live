@@ -33,6 +33,17 @@
 
     <tr>
       <td class="pl-5 border border-blue-300">
+        Bids:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <a class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" href={"/team/#{@team.id}/bids"}>
+          <%= Bids.number_of_bids(@team) %> open bids
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="pl-5 border border-blue-300">
         Unused nominations:
       </td>
       <td class="pl-5 border border-blue-300">

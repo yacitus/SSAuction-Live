@@ -60,4 +60,66 @@ defmodule SSAuction.BidsTest do
       assert %Ecto.Changeset{} = Bids.change_bid_log(bid_log)
     end
   end
+
+  describe "bids" do
+    alias SSAuction.Bids.Bid
+
+    import SSAuction.BidsFixtures
+
+    @invalid_attrs %{bid_amount: nil, closed: nil, expires_at: nil, hidden_high_bid: nil, nominated_by: nil}
+
+    test "list_bids/0 returns all bids" do
+      bid = bid_fixture()
+      assert Bids.list_bids() == [bid]
+    end
+
+    test "get_bid!/1 returns the bid with given id" do
+      bid = bid_fixture()
+      assert Bids.get_bid!(bid.id) == bid
+    end
+
+    test "create_bid/1 with valid data creates a bid" do
+      valid_attrs = %{bid_amount: 42, closed: true, expires_at: ~U[2021-12-30 15:27:00Z], hidden_high_bid: 42, nominated_by: 42}
+
+      assert {:ok, %Bid{} = bid} = Bids.create_bid(valid_attrs)
+      assert bid.bid_amount == 42
+      assert bid.closed == true
+      assert bid.expires_at == ~U[2021-12-30 15:27:00Z]
+      assert bid.hidden_high_bid == 42
+      assert bid.nominated_by == 42
+    end
+
+    test "create_bid/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Bids.create_bid(@invalid_attrs)
+    end
+
+    test "update_bid/2 with valid data updates the bid" do
+      bid = bid_fixture()
+      update_attrs = %{bid_amount: 43, closed: false, expires_at: ~U[2021-12-31 15:27:00Z], hidden_high_bid: 43, nominated_by: 43}
+
+      assert {:ok, %Bid{} = bid} = Bids.update_bid(bid, update_attrs)
+      assert bid.bid_amount == 43
+      assert bid.closed == false
+      assert bid.expires_at == ~U[2021-12-31 15:27:00Z]
+      assert bid.hidden_high_bid == 43
+      assert bid.nominated_by == 43
+    end
+
+    test "update_bid/2 with invalid data returns error changeset" do
+      bid = bid_fixture()
+      assert {:error, %Ecto.Changeset{}} = Bids.update_bid(bid, @invalid_attrs)
+      assert bid == Bids.get_bid!(bid.id)
+    end
+
+    test "delete_bid/1 deletes the bid" do
+      bid = bid_fixture()
+      assert {:ok, %Bid{}} = Bids.delete_bid(bid)
+      assert_raise Ecto.NoResultsError, fn -> Bids.get_bid!(bid.id) end
+    end
+
+    test "change_bid/1 returns a bid changeset" do
+      bid = bid_fixture()
+      assert %Ecto.Changeset{} = Bids.change_bid(bid)
+    end
+  end
 end

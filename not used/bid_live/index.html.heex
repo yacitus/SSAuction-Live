@@ -1,0 +1,47 @@
+<h1>Listing Bids</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.bid_index_path(@socket, :index)}>
+    <.live_component
+      module={SSAuctionWeb.BidLive.FormComponent}
+      id={@bid.id || :new}
+      title={@page_title}
+      action={@live_action}
+      bid={@bid}
+      return_to={Routes.bid_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bid amount</th>
+      <th>Hidden high bid</th>
+      <th>Expires at</th>
+      <th>Closed</th>
+      <th>Nominated by</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="bids">
+    <%= for bid <- @bids do %>
+      <tr id={"bid-#{bid.id}"}>
+        <td><%= bid.bid_amount %></td>
+        <td><%= bid.hidden_high_bid %></td>
+        <td><%= bid.expires_at %></td>
+        <td><%= bid.closed %></td>
+        <td><%= bid.nominated_by %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.bid_show_path(@socket, :show, bid) %></span>
+          <span><%= live_patch "Edit", to: Routes.bid_index_path(@socket, :edit, bid) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: bid.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Bid", to: Routes.bid_index_path(@socket, :new) %></span>

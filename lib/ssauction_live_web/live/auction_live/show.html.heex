@@ -24,6 +24,17 @@
 
     <tr>
       <td class="pl-5 border border-blue-300">
+        Bids:
+      </td>
+      <td class="pl-5 border border-blue-300">
+        <a class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" href={"/auction/#{@auction.id}/bids"}>
+          <%= Bids.number_of_bids(@auction) %> open bids
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="pl-5 border border-blue-300">
         Last Started or Paused:
       </td>
       <td class="pl-5 border border-blue-300">
@@ -79,7 +90,7 @@
         Time Before Nominations Expire:
       </td>
       <td class="pl-5 border border-blue-300">
-        <%= seconds_to_string(@auction.initial_bid_timeout_seconds) %>
+        <%= Auctions.seconds_to_string(@auction.initial_bid_timeout_seconds) %>
       </td>
     </tr>
 
@@ -88,7 +99,7 @@
         Time Before Bids Expire:
       </td>
       <td class="pl-5 border border-blue-300">
-        <%= seconds_to_string(@auction.bid_timeout_seconds) %>
+        <%= Auctions.seconds_to_string(@auction.bid_timeout_seconds) %>
       </td>
     </tr>
 
@@ -106,7 +117,7 @@
         Time Before Auto-nomination:
       </td>
       <td class="pl-5 border border-blue-300">
-        <%= seconds_to_string(@auction.seconds_before_autonomination) %>
+        <%= Auctions.seconds_to_string(@auction.seconds_before_autonomination) %>
       </td>
     </tr>
   </tbody>

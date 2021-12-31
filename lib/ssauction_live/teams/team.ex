@@ -9,6 +9,7 @@ defmodule SSAuction.Teams.Team do
     field :unused_nominations, :integer
 
     belongs_to :auction, SSAuction.Auctions.Auction
+    has_many :bids, SSAuction.Bids.Bid, on_replace: :nilify
     has_many :rostered_players, SSAuction.Players.RosteredPlayer
     has_many :ordered_players, SSAuction.Players.OrderedPlayer
     has_many :bid_logs, SSAuction.Bids.BidLog
