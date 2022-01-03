@@ -50,7 +50,8 @@ defmodule SSAuction.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:timex, "~> 3.6"},
-      {:ex_cldr_dates_times, "~> 2.0"}
+      {:ex_cldr_dates_times, "~> 2.0"},
+      {:pbkdf2_elixir, "~> 1.0"},
     ]
   end
 
