@@ -14,8 +14,8 @@ alias SSAuction.Repo
 alias SSAuction.Accounts.User
 alias SSAuction.Accounts
 
+# reset all user passwords
 password_to_reset_to = "secret"
-
 Enum.map(Repo.all(User),
          fn user -> Accounts.reset_user_password(user,
                                                  %{password: password_to_reset_to,
