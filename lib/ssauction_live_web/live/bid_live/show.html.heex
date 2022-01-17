@@ -1,18 +1,5 @@
 <h1>Show Bid</h1>
 
-<%= if @live_action in [:edit] do %>
-  <.modal return_to={Routes.bid_show_path(@socket, :show, @bid)}>
-    <.live_component
-      module={SSAuctionWeb.BidLive.FormComponent}
-      id={@bid.id}
-      title={@page_title}
-      action={@live_action}
-      bid={@bid}
-      return_to={Routes.bid_show_path(@socket, :show, @bid)}
-    />
-  </.modal>
-<% end %>
-
 <ul>
 
   <li>
@@ -41,6 +28,3 @@
   </li>
 
 </ul>
-
-<span><%= live_patch "Edit", to: Routes.bid_show_path(@socket, :edit, @bid), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.bid_index_path(@socket, :index) %></span>

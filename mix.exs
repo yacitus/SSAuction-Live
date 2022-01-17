@@ -33,6 +33,7 @@ defmodule SSAuction.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 2.0"},
       {:phoenix, "~> 1.6.2"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
@@ -51,7 +52,6 @@ defmodule SSAuction.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:timex, "~> 3.6"},
       {:ex_cldr_dates_times, "~> 2.0"},
-      {:pbkdf2_elixir, "~> 1.0"},
     ]
   end
 

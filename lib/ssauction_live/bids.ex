@@ -139,6 +139,26 @@ defmodule SSAuction.Bids do
     Repo.all(Bid)
   end
 
+  def list_bids(%Auction{} = auction) do
+    Repo.all(from bl in Bid,
+              where: bl.auction_id == ^auction.id,
+              join: t in assoc(bl, :team),
+              preload: [team: t],
+              join: p in assoc(bl, :player),
+              preload: [player: p],
+              order_by: bl.expires_at)
+  end
+
+  def list_bids(%Team{} = team) do
+    Repo.all(from bl in Bid,
+              where: bl.team_id == ^team.id,
+              join: t in assoc(bl, :team),
+              preload: [team: t],
+              join: p in assoc(bl, :player),
+              preload: [player: p],
+              order_by: bl.expires_at)
+  end
+
   @doc """
   Gets a single bid.
 
@@ -220,30 +240,10 @@ defmodule SSAuction.Bids do
     Bid.changeset(bid, attrs)
   end
 
-  def list_bids(%Auction{} = auction) do
-    Repo.all(from bl in Bid,
-              where: bl.auction_id == ^auction.id,
-              join: t in assoc(bl, :team),
-              preload: [team: t],
-              join: p in assoc(bl, :player),
-              preload: [player: p],
-              order_by: bl.expires_at)
-  end
-
   def number_of_bids(%Auction{} = auction) do
     auction
       |> Ecto.assoc(:bids)
       |> Repo.aggregate(:count, :id)
-  end
-
-  def list_bids(%Team{} = team) do
-    Repo.all(from bl in Bid,
-              where: bl.team_id == ^team.id,
-              join: t in assoc(bl, :team),
-              preload: [team: t],
-              join: p in assoc(bl, :player),
-              preload: [player: p],
-              order_by: bl.expires_at)
   end
 
   def number_of_bids(%Team{} = team) do
