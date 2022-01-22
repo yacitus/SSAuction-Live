@@ -4,7 +4,11 @@ module.exports = {
     '../lib/*_web/**/*.*ex'
   ],
   theme: {
-    extend: {},
+    extend: {
+    },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss/nesting'),
+    require('tailwindcss'),
+  ],
 }
