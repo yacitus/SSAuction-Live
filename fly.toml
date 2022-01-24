@@ -1,4 +1,4 @@
-# fly.toml file generated for ssauction on 2022-01-22T18:56:36-08:00
+# fly.toml file generated for ssauction on 2022-01-23T14:15:03-08:00
 
 app = "ssauction"
 
