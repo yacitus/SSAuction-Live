@@ -157,4 +157,11 @@ defmodule SSAuction.Teams do
       |> Repo.all
       |> Repo.preload([:player])
   end
+
+  alias SSAuction.Bids
+
+  def get_rostered_players_with_rostered_at(%Team{} = team) do
+    Enum.map(get_rostered_players(team),
+             fn rp -> Map.put(rp, :rostered_at, Bids.rostered_bid_log(rp.player).updated_at) end)
+  end
 end

@@ -11,6 +11,7 @@
         <th class="border border-blue-300">Player</th>
         <th class="border border-blue-300">Position</th>
         <th class="border border-blue-300">Scoresheet num</th>
+        <th class="border border-blue-300">Rostered</th>
       </tr>
     </thead>
     <tbody id="teams">
@@ -21,6 +22,12 @@
           <td class="pl-5 text-left border border-blue-300"><%= rostered_player.player.name %> (<%= rostered_player.player.id %>)</td>
           <td class="pl-5 text-left border border-blue-300"><%= rostered_player.player.position %></td>
           <td class="pl-5 text-left border border-blue-300"><%= rostered_player.player.ssnum %></td>
+          <td class="pl-5 text-left border border-blue-300">
+            <%= live_component SSAuctionWeb.FormattedTimeComponent,
+                           utc_datetime: rostered_player.rostered_at,
+                           locale: @locale,
+                           timezone: @timezone %>
+          </td>
         </tr>
       <% end %>
     </tbody>

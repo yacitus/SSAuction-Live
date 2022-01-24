@@ -187,6 +187,13 @@ defmodule SSAuction.Auctions do
       |> Repo.preload([:player, :team])
   end
 
+  alias SSAuction.Bids
+
+  def get_rostered_players_with_rostered_at(%Auction{} = auction) do
+    Enum.map(get_rostered_players(auction),
+             fn rp -> Map.put(rp, :rostered_at, Bids.rostered_bid_log(rp.player).updated_at) end)
+  end
+
   def number_of_rostered_players(%Auction{} = auction) do
     auction
       |> Ecto.assoc(:rostered_players)

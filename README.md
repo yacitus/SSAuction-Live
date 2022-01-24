@@ -2,7 +2,6 @@
 
 ## TODO:
 
-* add column for datetime rostered to Rostered Players table on team & auction pages
 * make Rostered Players table on team & auction pages sortable
 * add breadcrumbs to header (I like the chevron's on https://petal.build/docs/breadcrumbs)
 * don't link to bids page from auction and team pages if there are zero open bids

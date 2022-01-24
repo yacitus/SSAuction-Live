@@ -22,7 +22,7 @@ defmodule SSAuctionWeb.AuctionLive.RosteredPlayers do
     {:noreply,
      socket
        |> assign(:auction, auction)
-       |> assign(:rostered_players, Auctions.get_rostered_players(auction))
+       |> assign(:rostered_players, Auctions.get_rostered_players_with_rostered_at(auction))
     }
   end
 

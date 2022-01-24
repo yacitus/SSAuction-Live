@@ -113,6 +113,12 @@ defmodule SSAuction.Bids do
               order_by: bl.datetime)
   end
 
+  def rostered_bid_log(%Player{} = player) do
+    Repo.one(from bl in BidLog,
+              where: bl.player_id == ^player.id,
+              where: bl.type == "R")
+  end
+
   def bid_log_type_string(type) do
     case type do
       "N" -> "nomination"
