@@ -162,6 +162,16 @@ defmodule SSAuction.Teams do
 
   def get_rostered_players_with_rostered_at(%Team{} = team) do
     Enum.map(get_rostered_players(team),
-             fn rp -> Map.put(rp, :rostered_at, Bids.rostered_bid_log(rp.player).updated_at) end)
+             fn rp -> rp
+                      |> Map.put(:rostered_at, Bids.rostered_bid_log(rp.player).updated_at)
+                      |> Map.put(:player_name, rp.player.name)
+                      |> Map.put(:player_position, rp.player.position)
+                      |> Map.put(:player_ssnum, rp.player.ssnum)
+             end)
+  end
+
+  def get_rostered_players_with_rostered_at(%Team{} = team, %{sort_by: sort_by, sort_order: sort_order}) do
+    get_rostered_players_with_rostered_at(team)
+    |> Enum.sort_by(fn rp -> Map.get(rp, sort_by) end, sort_order)
   end
 end
