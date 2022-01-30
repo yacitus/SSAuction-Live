@@ -190,8 +190,19 @@ defmodule SSAuction.Auctions do
   alias SSAuction.Bids
 
   def get_rostered_players_with_rostered_at(%Auction{} = auction) do
-    Enum.map(get_rostered_players(auction),
-             fn rp -> Map.put(rp, :rostered_at, Bids.rostered_bid_log(rp.player).updated_at) end)
+    get_rostered_players(auction)
+    |> Enum.map(fn rp -> rp
+                         |> Map.put(:rostered_at, Bids.rostered_bid_log(rp.player).updated_at)
+                         |> Map.put(:team_name, rp.team.name)
+                         |> Map.put(:player_name, rp.player.name)
+                         |> Map.put(:player_position, rp.player.position)
+                         |> Map.put(:player_ssnum, rp.player.ssnum)
+                end)
+  end
+
+  def get_rostered_players_with_rostered_at(%Auction{} = auction, %{sort_by: sort_by, sort_order: sort_order}) do
+    get_rostered_players_with_rostered_at(auction)
+    |> Enum.sort_by(fn rp -> Map.get(rp, sort_by) end, sort_order)
   end
 
   def number_of_rostered_players(%Auction{} = auction) do

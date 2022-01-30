@@ -2,7 +2,7 @@
 
 ## TODO:
 
-* make Rostered Players table on team & auction pages sortable
+* make Rostered Players table on team page sortable
 * add breadcrumbs to header (I like the chevron's on https://petal.build/docs/breadcrumbs)
 * don't link to bids page from auction and team pages if there are zero open bids
 * figure out how to dedupe team_live/bids.html.heex and auction_live/bids.html.heex
@@ -10,3 +10,4 @@
 * Auto-Nomination Queue page: show Nominations Per Team
 * Auto-Nomination Queue page: highlight top N players where N = Nominations Per Team
 * allow teams of the same name, as long as they're not in the same auction
+* add sort_name column to all_players and players tables
