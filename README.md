@@ -2,7 +2,6 @@
 
 ## TODO:
 
-* add breadcrumbs to player page headers (when clicking on players in auction or team rostered player page)
 * display player page (with breadcrumbs) when clicking on player in auto-nomination queue page
 * don't link to bids page from auction and team pages if there are zero open bids
 * figure out how to dedupe team_live/bids.html.heex and auction_live/bids.html.heex
