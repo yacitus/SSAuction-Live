@@ -19,10 +19,13 @@ defmodule SSAuctionWeb.TeamLive.Bids do
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
     team = Teams.get_team!(id)
+    auction = Auctions.get_auction!(team.auction_id)
     {:noreply,
      socket
        |> assign(:auction, Auctions.get_auction!(team.auction_id))
        |> assign(:bids, Bids.list_bids(team))
+       |> assign(:links, [%{label: "#{auction.name} auction", to: "/auction/#{auction.id}"},
+                          %{label: "#{team.name}", to: "/team/#{id}"}])
     }
   end
 end

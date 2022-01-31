@@ -30,6 +30,7 @@ defmodule SSAuctionWeb.AuctionLive.RosteredPlayers do
        |> assign(:auction, auction)
        |> assign(:rostered_players, Auctions.get_rostered_players_with_rostered_at(auction, sort_options))
        |> assign(:options, sort_options)
+       |> assign(:links, [%{label: "#{auction.name} auction", to: "/auction/#{auction.id}"}])
     }
   end
 

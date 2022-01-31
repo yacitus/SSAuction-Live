@@ -22,6 +22,7 @@ defmodule SSAuctionWeb.AuctionLive.Bids do
      socket
        |> assign(:auction, auction)
        |> assign(:bids, Bids.list_bids(auction))
+       |> assign(:links, [%{label: "#{auction.name} auction", to: "/auction/#{auction.id}"}])
     }
   end
 end

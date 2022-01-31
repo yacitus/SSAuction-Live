@@ -2,6 +2,7 @@ defmodule SSAuctionWeb.TeamLive.RosteredPlayers do
   use SSAuctionWeb, :live_view
 
   alias SSAuction.Teams
+  alias SSAuction.Auctions
   alias SSAuction.Players
   alias SSAuction.Repo
 
@@ -20,6 +21,7 @@ defmodule SSAuctionWeb.TeamLive.RosteredPlayers do
   def handle_params(params, _, socket) do
     id = params["id"]
     team = Teams.get_team!(id)
+    auction = Auctions.get_auction!(team.auction_id)
 
     sort_by = (params["sort_by"] || "id") |> String.to_atom()
     sort_order = (params["sort_order"] || "asc") |> String.to_atom()
@@ -30,6 +32,8 @@ defmodule SSAuctionWeb.TeamLive.RosteredPlayers do
        |> assign(:team, team)
        |> assign(:rostered_players, Teams.get_rostered_players_with_rostered_at(team, sort_options))
        |> assign(:options, sort_options)
+       |> assign(:links, [%{label: "#{auction.name} auction", to: "/auction/#{auction.id}"},
+                          %{label: "#{team.name}", to: "/team/#{id}"}])
     }
   end
 
