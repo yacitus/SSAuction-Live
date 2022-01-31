@@ -12,4 +12,15 @@
   <body>
     <%= @inner_content %>
   </body>
+  <footer>
+    <section class="container w-full h-20 m-5 p-3 bg-blue-200 text-blue-600 text-5xl font-bold">
+      <div class="text-2xl">
+        <span class="float-right flex mt-3 font-normal">
+          <nav role="navigation">
+            <%= render "_user_menu.html", assigns %>
+          </nav>
+        </span>
+      </div>
+    </section>
+  </footer>
 </html>
